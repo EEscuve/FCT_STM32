@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Terra/Core/Src/AMUX_dir&apos; to &apos;AMUX_dir.c&apos;" description="Rename resource &apos;AMUX_dir&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/AMUX_dir" name="AMUX_dir.c" stamp="1736544210536" updateReferences="true"/>
+</session>

@@ -1,0 +1,84 @@
+#include "stm32f4xx_hal.h"
+#include <stdbool.h>
+// Function prototype
+void AMUX_dir(uint8_t Amux_ID, uint8_t Amux_port, bool Amux_Enable);
+
+void AMUX_dir(uint8_t Amux_ID, uint8_t Amux_port, bool Amux_Enable) {
+    // Enable/Disable pin configuration
+    GPIO_TypeDef *EN_Port;
+    uint16_t EN_Pin;
+
+    // Address line ports and pins
+    GPIO_TypeDef *A_Port[3];
+    uint16_t A_Pin[3];
+
+    // Set enable pin and address pins based on Amux_ID
+    switch (Amux_ID) {
+        case 0:
+            EN_Port = AMUX0_EN_GPIO_Port;
+            EN_Pin = AMUX0_EN_Pin;
+            A_Port[0] = AMUX0_A0_GPIO_Port; A_Pin[0] = AMUX0_A0_Pin;
+            A_Port[1] = AMUX0_A1_GPIO_Port; A_Pin[1] = AMUX0_A1_Pin;
+            A_Port[2] = AMUX0_A2_GPIO_Port; A_Pin[2] = AMUX0_A2_Pin;
+            break;
+        case 1:
+            EN_Port = AMUX1_EN_GPIO_Port;
+            EN_Pin = AMUX1_EN_Pin;
+            A_Port[0] = AMUX1_A0_GPIO_Port; A_Pin[0] = AMUX1_A0_Pin;
+            A_Port[1] = AMUX1_A1_GPIO_Port; A_Pin[1] = AMUX1_A1_Pin;
+            A_Port[2] = AMUX1_A2_GPIO_Port; A_Pin[2] = AMUX1_A2_Pin;
+            break;
+        case 2:
+            EN_Port = AMUX2_EN_GPIO_Port;
+            EN_Pin = AMUX2_EN_Pin;
+            A_Port[0] = AMUX2_A0_GPIO_Port; A_Pin[0] = AMUX2_A0_Pin;
+            A_Port[1] = AMUX2_A1_GPIO_Port; A_Pin[1] = AMUX2_A1_Pin;
+            A_Port[2] = AMUX2_A2_GPIO_Port; A_Pin[2] = AMUX2_A2_Pin;
+            break;
+        case 3:
+            EN_Port = AMUX3_EN_GPIO_Port;
+            EN_Pin = AMUX3_EN_Pin;
+            A_Port[0] = AMUX3_A0_GPIO_Port; A_Pin[0] = AMUX3_A0_Pin;
+            A_Port[1] = AMUX3_A1_GPIO_Port; A_Pin[1] = AMUX3_A1_Pin;
+            A_Port[2] = AMUX3_A2_GPIO_Port; A_Pin[2] = AMUX3_A2_Pin;
+            break;
+        case 4:
+            EN_Port = AMUX4_EN_GPIO_Port;
+            EN_Pin = AMUX4_EN_Pin;
+            A_Port[0] = AMUX4_A0_GPIO_Port; A_Pin[0] = AMUX4_A0_Pin;
+            A_Port[1] = AMUX4_A1_GPIO_Port; A_Pin[1] = AMUX4_A1_Pin;
+            A_Port[2] = AMUX4_A2_GPIO_Port; A_Pin[2] = AMUX4_A2_Pin;
+            break;
+        case 5:
+            EN_Port = AMUX5_EN_GPIO_Port;
+            EN_Pin = AMUX5_EN_Pin;
+            A_Port[0] = AMUX5_A0_GPIO_Port; A_Pin[0] = AMUX5_A0_Pin;
+            A_Port[1] = AMUX5_A1_GPIO_Port; A_Pin[1] = AMUX5_A1_Pin;
+            A_Port[2] = AMUX5_A2_GPIO_Port; A_Pin[2] = AMUX5_A2_Pin;
+            break;
+        case 6:
+            EN_Port = AMUX6_EN_GPIO_Port;
+            EN_Pin = AMUX6_EN_Pin;
+            A_Port[0] = AMUX6_A0_GPIO_Port; A_Pin[0] = AMUX6_A0_Pin;
+            A_Port[1] = AMUX6_A1_GPIO_Port; A_Pin[1] = AMUX6_A1_Pin;
+            A_Port[2] = AMUX6_A2_GPIO_Port; A_Pin[2] = AMUX6_A2_Pin;
+            break;
+        case 7:
+            EN_Port = AMUX7_EN_GPIO_Port;
+            EN_Pin = AMUX7_EN_Pin;
+            A_Port[0] = AMUX7_A0_GPIO_Port; A_Pin[0] = AMUX7_A0_Pin;
+            A_Port[1] = AMUX7_A1_GPIO_Port; A_Pin[1] = AMUX7_A1_Pin;
+            A_Port[2] = AMUX7_A2_GPIO_Port; A_Pin[2] = AMUX7_A2_Pin;
+            break;
+        default:
+            return; // Invalid Amux_ID
+    }
+
+    // Set the enable pin
+    HAL_GPIO_WritePin(EN_Port, EN_Pin, Amux_Enable ? GPIO_PIN_SET : GPIO_PIN_RESET);
+
+    // Configure the address pins
+    for (int i = 0; i < 3; i++) {
+        HAL_GPIO_WritePin(A_Port[i], A_Pin[i], (Amux_port & (1 << i)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+    }
+}
