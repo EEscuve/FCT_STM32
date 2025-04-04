@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;Terra/Core/Src/Amux_dir&apos; to &apos;Amux_dir.c&apos;" description="Rename resource &apos;Amux_dir&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/Amux_dir" name="Amux_dir.c" stamp="1741107530105" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;Terra/Core/Src/Amux_dir.c&apos; to &apos;amux.c&apos;" description="Rename resource &apos;Amux_dir.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/Amux_dir.c" name="amux.c" stamp="1741107618490" updateReferences="true"/>
+</session>

@@ -1,0 +1,6 @@
+../Drivers/CMSIS/Include/core_cm4.h:1939:34:__NVIC_SystemReset	4	static,ignoring_inline_asm
+../Core/Src/processCommand.c:23:9:processCommand	32	static
+../Core/Src/processCommand.c:77:9:handleLoadEnable	24	static
+../Core/Src/processCommand.c:116:9:handleBattSimEnable	16	static
+../Core/Src/processCommand.c:134:9:handleBattPSUPEnable	16	static
+../Core/Src/processCommand.c:152:6:perform_software_reset	16	static

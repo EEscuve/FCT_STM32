@@ -1,0 +1,100 @@
+#include "processCommand.h"
+#include "main.h"
+
+#include <string.h>
+
+#define START_OF_FRAME 0x5F
+#define END_OF_FRAME 0x6E
+#define CMD_GREEN_LED 0x01
+#define CMD_RED_LED 0x02
+#define ACK "ACK\n"
+#define NACK "NACK\n"
+
+extern UART_HandleTypeDef huart1;
+
+void processCommand(uint8_t *buffer, uint16_t length)
+{
+    uint16_t dataLength = (buffer[1] << 8) | buffer[2];
+    uint8_t cmd = buffer[3];
+    uint16_t data = (buffer[4] << 8) | buffer[5];
+
+    if (length == dataLength + 6)
+    {
+        switch (cmd)
+        {
+        case CMD_GREEN_LED:
+            HAL_GPIO_TogglePin(GPIOG, DEVLED_GREEN_Pin);
+            HAL_Delay(data);
+            HAL_UART_Transmit(&huart1, (uint8_t *)ACK, strlen(ACK), HAL_MAX_DELAY);
+            break;
+        case CMD_RED_LED:
+            HAL_GPIO_TogglePin(GPIOG, DEVLED_RED_Pin);
+            HAL_Delay(data);
+            HAL_UART_Transmit(&huart1, (uint8_t *)ACK, strlen(ACK), HAL_MAX_DELAY);
+            break;
+        default:
+            HAL_UART_Transmit(&huart1, (uint8_t *)NACK, strlen(NACK), HAL_MAX_DELAY);
+            break;
+        }
+    }
+    else
+    {
+        HAL_UART_Transmit(&huart1, (uint8_t *)NACK, strlen(NACK), HAL_MAX_DELAY);
+    }
+}
+
+
+void handleAMUXSelect(uint8_t N, uint8_t M)
+{
+    // Implement the functionality for selecting analog multiplexer
+}
+
+void handleAMUXEnable(uint8_t N, uint8_t enable)
+{
+    // Implement the functionality for enabling/disabling analog multiplexer
+}
+
+void handleDMUXSelect(uint8_t N, uint8_t M)
+{
+    // Implement the functionality for selecting digital multiplexer
+}
+
+void handleDMUXEnable(uint8_t N, uint8_t enable)
+{
+    // Implement the functionality for enabling/disabling digital multiplexer
+}
+
+void handleUARTTx(uint8_t uart, char *message)
+{
+    // Implement the functionality for transmitting UART message
+}
+
+void handleUARTRx(uint8_t uart)
+{
+    // Implement the functionality for receiving UART message
+}
+
+void handleSPITx(uint8_t spi, char *message)
+{
+    // Implement the functionality for transmitting SPI message
+}
+
+void handleSPIRx(uint8_t spi)
+{
+    // Implement the functionality for receiving SPI message
+}
+
+void handleLoadEnable(uint8_t load, uint8_t enable)
+{
+    // Implement the functionality for enabling/disabling load
+}
+
+void handleBattSimEnable(uint8_t enable)
+{
+    // Implement the functionality for enabling/disabling battery simulator switch
+}
+
+void handleBattPwrEnable(uint8_t enable)
+{
+    // Implement the functionality for enabling/disabling battery power supply
+}

@@ -1,0 +1,12 @@
+../Core/Src/processCommand.c:15:6:processCommand	16	static
+../Core/Src/processCommand.c:47:6:handleAMUXSelect	0	static
+../Core/Src/processCommand.c:52:6:handleAMUXEnable	0	static
+../Core/Src/processCommand.c:57:6:handleDMUXSelect	0	static
+../Core/Src/processCommand.c:62:6:handleDMUXEnable	0	static
+../Core/Src/processCommand.c:67:6:handleUARTTx	0	static
+../Core/Src/processCommand.c:72:6:handleUARTRx	0	static
+../Core/Src/processCommand.c:77:6:handleSPITx	0	static
+../Core/Src/processCommand.c:82:6:handleSPIRx	0	static
+../Core/Src/processCommand.c:87:6:handleLoadEnable	0	static
+../Core/Src/processCommand.c:92:6:handleBattSimEnable	0	static
+../Core/Src/processCommand.c:97:6:handleBattPwrEnable	0	static
